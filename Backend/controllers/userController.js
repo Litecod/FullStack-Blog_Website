@@ -74,7 +74,7 @@ const verifyCode = async (req, res) => {
 //User registration
 const registerUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { username, email, password } = req.body;
 
     sendVerificationEmail(email);
 
@@ -98,7 +98,7 @@ const registerUser = async (req, res) => {
     const hashedPasword = await bcrypt.hash(password, salt);
 
     const newUser = new userModel({
-      name,
+      username,
       email,
       password: hashedPasword,
     });
