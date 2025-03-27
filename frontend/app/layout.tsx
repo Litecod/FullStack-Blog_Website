@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import BlogContextProvider from "@/context/BlogContext";
+import { ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,8 +19,11 @@ export default function RootLayout({
       <body
         className="max-w-[1500px] mx-auto px-[0.8rem] sm:px-[2rem] md:px-[4rem] lg:px-[8rem]"
       >
-        <Navbar />
-        {children}
+        <BlogContextProvider>
+          <ToastContainer />
+          <Navbar />
+          {children}
+        </BlogContextProvider>
       </body>
     </html>
   );

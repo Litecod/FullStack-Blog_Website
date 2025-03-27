@@ -1,15 +1,54 @@
 "use client"
 
-import React, {useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdEmail } from "react-icons/md";
 import { TbPasswordMobilePhone } from "react-icons/tb";
 import Link from "next/link";
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useContexts } from '@/context/BlogContext';
 
 const Login = () => {
     const [page, setPage] = useState("User");
 
+    const { backendUrl, token, setToken, router } = useContexts()
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const onSubmithandler = async (e) => {
+        e.preventDefault()
+        try {
+            if (page === "User") {
+                const response = await axios.post(backendUrl + "/api/user/login", { email, password })
+                if (response.data.success) {
+                    setToken(response.data.token);
+                    localStorage.setItem("token", response.data.token);
+                    toast.success("Login Successful");
+                } else {
+                    toast.error(response.data.message);
+                }
+            } else {
+                const response = await axios.post(backendUrl + "/api/user/author-login", { email, password })
+                if (response.data.success) {
+                    setToken(response.data.token);
+                    localStorage.setItem("token", response.data.token);
+                    toast.success("Login Successful");
+                } else {
+                    toast.error(response.data.message);
+                }
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message);
+        }
+    }
+
+    useEffect(() => {
+        if (token) {
+            router.push("/")
+        }
+    }, [token])
 
     return (
         <div className="text-center mt-14 flex flex-col gap-[2rem]">
@@ -33,7 +72,7 @@ const Login = () => {
                 </button>}
             </div>
             <div className="text-center flex flex-col gap-[2rem] w-[30%] mx-auto ">
-                <form className="flex flex-col gap-[2rem]">
+                <form onSubmit={onSubmithandler} className="flex flex-col gap-[2rem]">
                     <div className="flex relative">
                         <MdEmail className="absolute left-[0.5rem] top-[0.5rem] text-[1.3rem] text-gray-600" />
                         <input

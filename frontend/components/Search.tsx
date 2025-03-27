@@ -11,7 +11,7 @@ const Search = () => {
 
 
     useEffect(() => {
-        if (pathname.includes("login") || pathname.includes("register")) {
+        if (pathname.includes("login") || pathname.includes("register") || pathname.includes("profile")) {
             setVisible(false);
         } else {
             setVisible(true);
