@@ -7,13 +7,13 @@ import Search from './Search'
 import Image from 'next/image'
 import img from "@/public/images/profile.jpg"
 import { useContexts } from '@/context/BlogContext'
-
 const Navbar = () => {
   const pathname = usePathname();
   const [visible, setVisible] = useState(false)
   const [show, setShow] = useState(false)
+  const [userss, setUserss] = useState("")
 
-  const { router, setToken, token } = useContexts();
+  const { router, setToken, token, userInfo } = useContexts();
 
 
   const logOut = () => {
@@ -21,8 +21,6 @@ const Navbar = () => {
     localStorage.removeItem("token");
     setToken("");
   };
-
-
   useEffect(() => {
     if (pathname.includes("login")) {
       setVisible(true);
@@ -37,6 +35,10 @@ const Navbar = () => {
       setShow(false)
     }
   }, [pathname]);
+
+
+  const profileImg = userInfo.find((user) =>  token)
+  console.log(userInfo)
   return (
     <div className={``}>
       <div className="flex justify-between py-[1rem] items-center gap-[1rem]">

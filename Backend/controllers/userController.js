@@ -207,4 +207,14 @@ const authorLogin = async(req,res) => {
   }
 }
 
-export { sendCode, verifyCode, registerUser, userLogin, authorRegister, authorLogin};
+const listUser = async (req, res) => {
+  try {
+    const user = await userModel.find({});
+    res.json({ success: true, user });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+export { sendCode, verifyCode, registerUser, userLogin, authorRegister, authorLogin, listUser};
