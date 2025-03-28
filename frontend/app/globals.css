@@ -4,11 +4,11 @@
 
 
 *{
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .pop {
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .big {
@@ -16,4 +16,7 @@
 }
 .prata {
   font-family: "Prata", serif;
+}
+.botton {
+  background: #333333;
 }

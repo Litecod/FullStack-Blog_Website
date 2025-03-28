@@ -71,7 +71,7 @@ const Login = () => {
                     Login As User
                 </button>}
             </div>
-            <div className="text-center flex flex-col gap-[2rem] w-[30%] mx-auto ">
+            <div className="text-center flex flex-col gap-[2rem] w-full sm:w-[70%] md:w-[50%] lg:w-[40%] xl:w-[30%] mx-auto ">
                 <form onSubmit={onSubmithandler} className="flex flex-col gap-[2rem]">
                     <div className="flex relative">
                         <MdEmail className="absolute left-[0.5rem] top-[0.5rem] text-[1.3rem] text-gray-600" />

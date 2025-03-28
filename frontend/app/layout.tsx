@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="max-w-[1500px] mx-auto px-[0.8rem] sm:px-[2rem] md:px-[4rem] lg:px-[8rem]"
+        className="max-w-[1500px] mx-auto text-[#000] bg-[#ebb8c2] px-[0.8rem] sm:px-[2rem] md:px-[3rem] lg:px-[5rem] xl:px-[8rem]"
       >
         <BlogContextProvider>
           <ToastContainer />

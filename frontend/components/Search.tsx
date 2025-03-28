@@ -20,12 +20,12 @@ const Search = () => {
 
     
     return visible ? (
-        <div className="text-center">
+        <div className="text-center ">
             <div className=" relative flex max-w-[40rem] w-full">
-                <div className="absolute left-[0.5rem] top-[0.4rem] text-[1.4rem] text-gray-600">
+                <div className="absolute left-[0.5rem] top-[0.4rem] text-[1.2rem] sm:text-[1.4rem] text-[#000]">
                     <IoSearch />
                 </div>
-                <input type="text" placeholder="Search" className="w-full pl-[2.3rem] bg-gray-100 shadow-sm shadow-[#0000001e] border border-[#0000001e] rounded px-[0.4rem] py-[0.4rem]" />
+                <input type="text" placeholder="Search" className=" text-[0.8rem] sm:text-[1rem] outline-none text-[#000] w-full pl-[2.3rem] bg-gray-100 shadow-sm shadow-[#0000001e] border border-[#0000001e] rounded px-[0.4rem] py-[0.4rem]" />
             </div>
         </div>
     ) : null;

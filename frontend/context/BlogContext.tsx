@@ -3,12 +3,14 @@
 
 import { useRouter } from 'next/navigation';
 import React, { createContext, useState, ReactNode, useContext } from 'react'
+import { BlogPost, BlogType } from '@/public/images/image';
 
 interface BlogContextType {
     backendUrl: string | null;
     token: string;
     setToken: React.Dispatch<React.SetStateAction<string>>;
     router: any;
+    BlogPost: BlogType[];
 }
 
 const BlogContext = createContext<BlogContextType | undefined>(undefined);
@@ -21,7 +23,7 @@ const BlogContextProvider = ({ children }: { children: ReactNode }) => {
 
 
     return (
-        <BlogContext.Provider value={{backendUrl, token, setToken, router}}>
+        <BlogContext.Provider value={{backendUrl, token, setToken, router, BlogPost}}>
             {children}
         </BlogContext.Provider>
     )

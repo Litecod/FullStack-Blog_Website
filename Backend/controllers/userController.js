@@ -74,7 +74,7 @@ const verifyCode = async (req, res) => {
 //User registration
 const registerUser = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, role } = req.body;
 
     sendVerificationEmail(email);
 
@@ -101,6 +101,7 @@ const registerUser = async (req, res) => {
       username,
       email,
       password: hashedPasword,
+      role: "user"
     });
 
     const user = await newUser.save();
@@ -117,13 +118,52 @@ const registerUser = async (req, res) => {
 //Author user register
 
 const authorRegister = async(req,res) => {
+  try {
+    const { username, email, password, role } = req.body;
 
+    sendVerificationEmail(email);
+
+    //checking if a user already exist
+
+    const exists = await userModel.findOne({ email });
+    if (exists) {
+      res.json({ success: false, message: "Writer Already Exist" });
+    }
+
+    //validate strong password
+    if (password.length < 8) {
+      return res.json({
+        success: false,
+        message: "Please enter a strong password",
+      });
+    }
+
+    //hashing user password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPasword = await bcrypt.hash(password, salt);
+
+    const newUser = new userModel({
+      username,
+      email,
+      password: hashedPasword,
+      role: "author"
+    });
+
+    const user = await newUser.save();
+    const token = createToken(user._id);
+
+    res.json({ success: true, token });
+    return validator.isEmail(email);
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
 }
 
 //userLoin
 const userLogin = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role } = req.body;
     const user = await userModel.findOne({ email });
 
     if (!user) {
@@ -131,7 +171,7 @@ const userLogin = async (req, res) => {
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (isMatch) {
+    if (isMatch && role === "user") {
       const token = createToken(user._id);
       res.json({ success: true, token });
     } else {
@@ -146,7 +186,25 @@ const userLogin = async (req, res) => {
 //Author user login
 
 const authorLogin = async(req,res) => {
-  
+  try {
+    const { email, password, role } = req.body;
+    const user = await userModel.findOne({ email });
+
+    if (!user) {
+      return res.json({ success: false, message: "You don't have an account" });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (isMatch && role === "author") {
+      const token = createToken(user._id);
+      res.json({ success: true, token });
+    } else {
+      res.json({ success: false, message: "Invalid Password" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
 }
 
 export { sendCode, verifyCode, registerUser, userLogin, authorRegister, authorLogin};
