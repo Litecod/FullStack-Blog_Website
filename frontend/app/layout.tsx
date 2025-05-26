@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import BlogContextProvider from "@/context/BlogContext";
 import { ToastContainer } from "react-toastify";
+import Sidebar from "@/components/Sidebar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,12 +18,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="max-w-[1500px] mx-auto text-[#000] bg-[#ebb8c2] px-[0.8rem] sm:px-[2rem] md:px-[3rem] lg:px-[5rem] xl:px-[8rem]"
+        className=" text-[#000] bg-gray-100"
       >
         <BlogContextProvider>
           <ToastContainer />
           <Navbar />
-          {children}
+
+          <div className="max-w-[1500px] mx-auto ">
+            <div className="">
+              <Sidebar />
+            </div>
+            <div className="">
+              {children}
+            </div>
+          </div>
+
         </BlogContextProvider>
       </body>
     </html>

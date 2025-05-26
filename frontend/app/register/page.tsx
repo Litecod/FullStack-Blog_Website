@@ -10,7 +10,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const Register = () => {
-  const { backendUrl, token, setToken, router } = useContexts()
+  const { backendUrl, token, setToken, router, userId, setUserId } = useContexts()
   const [page, setPage] = useState("User");
 
   const [username, setUsername] = useState("");
@@ -24,7 +24,10 @@ const Register = () => {
         const response = await axios.post(backendUrl + "/api/user/register", { username, email, password })
         if (response.data.success) {
           setToken(response.data.token)
+          setUserId(response.data.id)
+          console.log(response.data)
           localStorage.setItem("token", response.data.token)
+          localStorage.setItem("userId", response.data._id)
           toast.success("welcome to LITE BLOG")
         } else {
           toast.error(response.data.message)
@@ -33,8 +36,10 @@ const Register = () => {
         const response = await axios.post(backendUrl + "/api/user/author-register", { username, email, password })
         if (response.data.success) {
           setToken(response.data.token)
+          setUserId(response.data.id)
           localStorage.setItem("token", response.data.token)
-          console.log("light")
+          localStorage.setItem("userId", response.data._id)
+          console.log(response.data)
           toast.success("welcome to LITE BLOG")
           
         } else {
@@ -43,16 +48,17 @@ const Register = () => {
       }
     } catch (error) {
       console.log(error)
-      toast.error(error.message)
+      toast.error("unavailable")
     }
   }
 
   useEffect(() => {
-    if (token) {
+    if (token || userId) {
       router.push("/")
     }
-  }, [token])
+  }, [token, userId])
   return (
+    <div className="px-[0.8rem] sm:px-[2rem] md:px-[3rem] lg:px-[5rem] xl:px-[8rem]">
     <div className="text-center mt-14 flex flex-col gap-[2rem]">
       <div className="flex flex-col items-center gap-3 mx-auto">
         <h1 className="prata text-[2rem] font-medium">
@@ -126,6 +132,7 @@ const Register = () => {
           </Link>
         </p>
       </div>
+    </div>
     </div>
   )
 }

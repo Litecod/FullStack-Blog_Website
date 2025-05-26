@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 import userModel from "../models/userModel.js";
 
 const createToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET);
+  return jwt.sign({ id: id }, process.env.JWT_SECRET);
 };
 
 //using nodemailer to verify email
@@ -101,13 +101,13 @@ const registerUser = async (req, res) => {
       username,
       email,
       password: hashedPasword,
-      role: "user"
+      role: "user",
     });
 
-    const user = await newUser.save();
-    const token = createToken(user._id);
+    await newUser.save();
+    const token = createToken(newUser._id);
 
-    res.json({ success: true, token });
+    res.json({ success: true, id: newUser._id, username: newUser.username, email: newUser.email, role: newUser.role, token });
     return validator.isEmail(email);
   } catch (error) {
     console.log(error);
@@ -117,7 +117,7 @@ const registerUser = async (req, res) => {
 
 //Author user register
 
-const authorRegister = async(req,res) => {
+const authorRegister = async (req, res) => {
   try {
     const { username, email, password, role } = req.body;
 
@@ -146,19 +146,19 @@ const authorRegister = async(req,res) => {
       username,
       email,
       password: hashedPasword,
-      role: "author"
+      role: "author",
     });
 
-    const user = await newUser.save();
-    const token = createToken(user._id);
+    await newUser.save();
+    const token = createToken(newUser._id);
 
-    res.json({ success: true, token });
+    res.json({ success: true, id: newUser._id, username: newUser.username, email: newUser.email, role: newUser.role, token });
     return validator.isEmail(email);
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });
   }
-}
+};
 
 //userLoin
 const userLogin = async (req, res) => {
@@ -173,7 +173,7 @@ const userLogin = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch && role === "user") {
       const token = createToken(user._id);
-      res.json({ success: true, token });
+      res.json({ success: true, id: user._id, username: user.username, token });
     } else {
       res.json({ success: false, message: "Invalid Password" });
     }
@@ -185,7 +185,7 @@ const userLogin = async (req, res) => {
 
 //Author user login
 
-const authorLogin = async(req,res) => {
+const authorLogin = async (req, res) => {
   try {
     const { email, password, role } = req.body;
     const user = await userModel.findOne({ email });
@@ -197,7 +197,7 @@ const authorLogin = async(req,res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch && role === "author") {
       const token = createToken(user._id);
-      res.json({ success: true, token });
+      res.json({ success: true, id: user._id, username: user.username, token });
     } else {
       res.json({ success: false, message: "Invalid Password" });
     }
@@ -205,16 +205,25 @@ const authorLogin = async(req,res) => {
     console.log(error);
     res.json({ success: false, message: error.message });
   }
-}
+};
 
 const listUser = async (req, res) => {
   try {
-    const user = await userModel.find({});
-    res.json({ success: true, user });
+    const { userId } = req.body;
+    const userInfo = await userModel.findById(userId);
+    res.json({ success: true, userInfo });
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });
   }
 };
 
-export { sendCode, verifyCode, registerUser, userLogin, authorRegister, authorLogin, listUser};
+export {
+  sendCode,
+  verifyCode,
+  registerUser,
+  userLogin,
+  authorRegister,
+  authorLogin,
+  listUser,
+};

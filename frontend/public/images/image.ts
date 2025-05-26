@@ -1,5 +1,10 @@
 import { StaticImageData } from "next/image";
 import postOne from "../images/post1.jpg";
+import postTwo from "../images/IMG_1168.png";
+import postThree from "../images/logo.jpg";
+import postFour from "../images/shrek.png";
+import postFive from "../images/super.png";
+import postSix from "../images/superHero.png";
 
 export interface BlogType {
   _id: string;
@@ -35,7 +40,7 @@ export const BlogPost: BlogType[] = [
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius distinctio maxime non voluptatibus modi officia assumenda repellat animi sed nobis! Qui culpa tenetur expedita rem accusantium labore voluptate earum dolor, esse sapiente ratione quibusdam debitis nulla ab quasi neque saepe necessitatibus? Eaque quos, numquam reiciendis architecto fuga nesciunt dolorum. In expedita ipsa at optio animi, rem libero voluptatibus aspernatur laborum eos quam est, alias corrupti ullam impedit accusamus natus quas velit fugit error vel itaque reiciendis? Maxime, assumenda, quod quaerat magnam dolore nihil debitis voluptates nisi incidunt molestiae nam beatae! Accusamus recusandae voluptatibus minima modi, voluptas velit quo iste facilis!",
     view: 1222,
     likes: 3000,
-    image: postOne,
+    image: postTwo,
     date: "1 Jan 2023",
   },
   {
@@ -47,7 +52,7 @@ export const BlogPost: BlogType[] = [
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius distinctio maxime non voluptatibus modi officia assumenda repellat animi sed nobis! Qui culpa tenetur expedita rem accusantium labore voluptate earum dolor, esse sapiente ratione quibusdam debitis nulla ab quasi neque saepe necessitatibus? Eaque quos, numquam reiciendis architecto fuga nesciunt dolorum. In expedita ipsa at optio animi, rem libero voluptatibus aspernatur laborum eos quam est, alias corrupti ullam impedit accusamus natus quas velit fugit error vel itaque reiciendis? Maxime, assumenda, quod quaerat magnam dolore nihil debitis voluptates nisi incidunt molestiae nam beatae! Accusamus recusandae voluptatibus minima modi, voluptas velit quo iste facilis!",
     view: 1222,
     likes: 3000,
-    image: postOne,
+    image: postThree,
     date: "1 Jan 2023",
   },
   {
@@ -59,7 +64,7 @@ export const BlogPost: BlogType[] = [
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius distinctio maxime non voluptatibus modi officia assumenda repellat animi sed nobis! Qui culpa tenetur expedita rem accusantium labore voluptate earum dolor, esse sapiente ratione quibusdam debitis nulla ab quasi neque saepe necessitatibus? Eaque quos, numquam reiciendis architecto fuga nesciunt dolorum. In expedita ipsa at optio animi, rem libero voluptatibus aspernatur laborum eos quam est, alias corrupti ullam impedit accusamus natus quas velit fugit error vel itaque reiciendis? Maxime, assumenda, quod quaerat magnam dolore nihil debitis voluptates nisi incidunt molestiae nam beatae! Accusamus recusandae voluptatibus minima modi, voluptas velit quo iste facilis!",
     view: 1222,
     likes: 3000,
-    image: postOne,
+    image: postFour,
     date: "1 Jan 2023",
   },
   {
@@ -71,7 +76,7 @@ export const BlogPost: BlogType[] = [
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius distinctio maxime non voluptatibus modi officia assumenda repellat animi sed nobis! Qui culpa tenetur expedita rem accusantium labore voluptate earum dolor, esse sapiente ratione quibusdam debitis nulla ab quasi neque saepe necessitatibus? Eaque quos, numquam reiciendis architecto fuga nesciunt dolorum. In expedita ipsa at optio animi, rem libero voluptatibus aspernatur laborum eos quam est, alias corrupti ullam impedit accusamus natus quas velit fugit error vel itaque reiciendis? Maxime, assumenda, quod quaerat magnam dolore nihil debitis voluptates nisi incidunt molestiae nam beatae! Accusamus recusandae voluptatibus minima modi, voluptas velit quo iste facilis!",
     view: 1222,
     likes: 3000,
-    image: postOne,
+    image: postFive,
     date: "1 Jan 2023",
   },
   {
@@ -83,7 +88,7 @@ export const BlogPost: BlogType[] = [
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius distinctio maxime non voluptatibus modi officia assumenda repellat animi sed nobis! Qui culpa tenetur expedita rem accusantium labore voluptate earum dolor, esse sapiente ratione quibusdam debitis nulla ab quasi neque saepe necessitatibus? Eaque quos, numquam reiciendis architecto fuga nesciunt dolorum. In expedita ipsa at optio animi, rem libero voluptatibus aspernatur laborum eos quam est, alias corrupti ullam impedit accusamus natus quas velit fugit error vel itaque reiciendis? Maxime, assumenda, quod quaerat magnam dolore nihil debitis voluptates nisi incidunt molestiae nam beatae! Accusamus recusandae voluptatibus minima modi, voluptas velit quo iste facilis!",
     view: 1222,
     likes: 3000,
-    image: postOne,
+    image: postSix,
     date: "1 Jan 2023",
   },
 ];

@@ -8,6 +8,7 @@ import {
   authorLogin,
   listUser,
 } from "../controllers/userController.js";
+import authUser from "../middleware/auth.js"
 
 const UserRouter = express.Router();
 
@@ -17,6 +18,8 @@ UserRouter.post("/register", registerUser);
 UserRouter.post("/login", userLogin);
 UserRouter.post("/author-login", authorLogin);
 UserRouter.post("/author-register", authorRegister);
-UserRouter.get("/list", listUser)
+
+//get User Info
+UserRouter.post("/getuser", authUser, listUser)
 
 export default UserRouter;

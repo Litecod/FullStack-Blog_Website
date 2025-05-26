@@ -23,12 +23,12 @@ const RecentBlog = () => {
             {postsOne.map((post, index) => {
               return (
                 <div key={index} className='flex flex-col gap-[0.5rem]'>
-                  <Image src={post.image} alt='Image' className='rounded-xl' />
+                  <Image src={post.image} alt='Image' className=' h-[17rem] object-cover' />
                   <div className=" flex flex-col gap-[0.6rem]">
-                    <p className='font-medium text-[#472b89]'>Written By: {post.author}</p>
-                    <Link href={`/post/${post._id}`}><p className='font-medium'>{post.title}</p></Link>
+                    <p className='font-medium text-[#6941C6]'>Written By: {post.author}</p>
+                    <Link href={`/post/${post._id}`}><p className='font-semibold'>{post.title}</p></Link>
                     <p className='line-clamp-3 text-gray-800'>{post.description}</p>
-                    <p>{post.date}</p>
+                    <p className='text-[#C11574] font-medium'>{post.date}</p>
                   </div>
                   <div className="flex justify-between">
                     <div className="flex items-center gap-[0.5rem]"><FaEye />  <p>{post.view}</p></div>
@@ -42,12 +42,12 @@ const RecentBlog = () => {
             {postsTwo.map((post, index) => {
               return (
                 <div key={index} className='flex flex-col md:flex-row gap-[1rem] items-center'>
-                  <Image src={post.image} alt='Image' className='w-full md:w-[53%] rounded-xl' />
+                  <Image src={post.image} alt='Image' className='w-full md:w-[53%] max-h-[15rem] object-cover' />
                   <div className=" flex flex-col gap-[0.6rem] w-full md:w-[47%]">
-                    <p className='line-clamp-1 font-medium text-[#472b89]'>Written By: {post.author}</p>
-                    <Link href={`/post/${post._id}`}><p className='line-clamp-2'>{post.title}</p></Link>
+                    <p className='line-clamp-1 font-medium text-[#6941C6]'>Written By: {post.author}</p>
+                    <Link href={`/post/${post._id}`}><p className='line-clamp-2 font-semibold'>{post.title}</p></Link>
                     <p className='line-clamp-3 md:line-clamp-2 lg:line-clamp-3 text-gray-800'>{post.description}</p>
-                    <p>{post.date}</p>
+                    <p className='text-[#C11574] font-medium'>{post.date}</p>
                     <div className="flex justify-between">
                       <div className="flex items-center gap-[0.5rem]"><FaEye />  <p>{post.view}</p></div>
                       <div onClick={() => setLike(prev => !prev)} className="flex items-center gap-[0.5rem] cursor-pointer"><FaHeart className={`${like ? "text-[red]" : "text-[#000]"}`} />  <p>{post.likes}</p></div>
@@ -63,12 +63,12 @@ const RecentBlog = () => {
         {postsThree.map((post, index) => {
               return (
                 <div key={index} className='flex flex-col md:flex-row gap-[1rem] items-center'>
-                  <Image src={post.image} alt='Image' className='w-full md:h-[20rem] md:w-[53%] rounded-xl' />
+                  <Image src={post.image} alt='Image' className='w-full md:h-[20rem] md:w-[53%] object-cover' />
                   <div className=" flex flex-col gap-[0.6rem] w-full md:w-[47%]">
-                    <p className='line-clamp-1 font-medium text-[#472b89]'>Written By: {post.author}</p>
-                    <Link href={`/post/${post._id}`}><p className='line-clamp-2'>{post.title}</p></Link>
+                    <p className='line-clamp-1 font-medium text-[#6941C6]'>Written By: {post.author}</p>
+                    <Link href={`/post/${post._id}`}><p className='line-clamp-2 font-semibold'>{post.title}</p></Link>
                     <p className='md:line-clamp-6 lg:line-clamp-none text-gray-800'>{post.description}</p>
-                    <p>{post.date}</p>
+                    <p className='text-[#C11574] font-medium'>{post.date}</p>
                     <div className="flex justify-between">
                       <div className="flex items-center gap-[0.5rem]"><FaEye />  <p>{post.view}</p></div>
                       <div onClick={() => setLike(prev => !prev)} className="flex items-center gap-[0.5rem] cursor-pointer"><FaHeart className={`${like ? "text-[red]" : "text-[#000]"}`} />  <p>{post.likes}</p></div>

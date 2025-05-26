@@ -7,7 +7,7 @@ const postSchema = new mongoose.Schema({
   author: { type: String, required: true },
   view: { type: Number, default: 0 },
   likes: { type: Number, default: 0 },
-  image: { type: String, require: true },
+  image: { type: Array, require: true },
   date: { type: Number, require: true },
   comment: [
     {

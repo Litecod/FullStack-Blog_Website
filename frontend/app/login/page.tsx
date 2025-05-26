@@ -11,19 +11,21 @@ import { useContexts } from '@/context/BlogContext';
 const Login = () => {
     const [page, setPage] = useState("User");
 
-    const { backendUrl, token, setToken, router } = useContexts()
+    const { backendUrl, token, setToken, router, userId, setUserId } = useContexts()
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const onSubmithandler = async (e) => {
+    const onSubmithandler = async (e:any) => {
         e.preventDefault()
         try {
             if (page === "User") {
                 const response = await axios.post(backendUrl + "/api/user/login", { email, password })
                 if (response.data.success) {
                     setToken(response.data.token);
-                    localStorage.setItem("token", response.data.token);
+                    setUserId(response.data.id)
+                    localStorage.setItem("token", response.data.token)
+                    localStorage.setItem("userId", response.data._id)
                     toast.success("Login Successful");
                 } else {
                     toast.error(response.data.message);
@@ -32,7 +34,9 @@ const Login = () => {
                 const response = await axios.post(backendUrl + "/api/user/author-login", { email, password })
                 if (response.data.success) {
                     setToken(response.data.token);
-                    localStorage.setItem("token", response.data.token);
+                    setUserId(response.data.id)
+                    localStorage.setItem("token", response.data.token)
+                    localStorage.setItem("userId", response.data._id)
                     toast.success("Login Successful");
                 } else {
                     toast.error(response.data.message);
@@ -40,18 +44,18 @@ const Login = () => {
             }
         } catch (error) {
             console.log(error);
-            toast.error(error.message);
+            toast.error(error);
         }
     }
 
     useEffect(() => {
-        if (token) {
+        if (token || userId) {
             router.push("/")
         }
-    }, [token])
+    }, [token, userId])
 
     return (
-        <div className="text-center mt-14 flex flex-col gap-[2rem]">
+        <div className="text-center mt-14 flex flex-col gap-[2rem] px-[0.8rem] sm:px-[2rem] md:px-[3rem] lg:px-[5rem] xl:px-[8rem]">
             <div className="flex flex-col items-center gap-3 mx-auto">
                 <h1 className="prata text-[2rem] font-medium">
                     {page === "Writer" ? "Login as Writer" : "Login as User"}

@@ -4,6 +4,7 @@ import "dotenv/config"
 import connectDB from "./config/mongodb.js"
 import connectCloudinary from "./config/cloudinary.js"
 import UserRouter from "./routes/userRoute.js"
+import PostRouter from "./routes/postRoute.js"
 
 
 //APP config
@@ -20,6 +21,7 @@ app.use(cors())
 
 //api endpoints
 app.use("/api/user", UserRouter)
+app.use("/api/post", PostRouter)
 
 app.get("/", (req,res) => {
     res.send("Server Set")

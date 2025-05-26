@@ -40,8 +40,9 @@ const pape = () => {
   }
 
   return (
+    <div className="px-[0.8rem] sm:px-[2rem] md:px-[3rem] lg:px-[5rem] xl:px-[8rem]">
     <div className='flex flex-col gap-[2rem] py-[3rem]'>
-      <Image src={post.image} alt='Image' className='rounded-xl' />
+      <Image src={post.image} alt='Image' className='rounded-xl max-h-[40rem] object-cover' />
       <div className=" flex flex-col gap-[0.6rem] w-full">
         <p className=' font-medium text-[#472b89]'>Written By: {post.author}</p>
         <p className=''>{post.title}</p>
@@ -60,6 +61,7 @@ const pape = () => {
       </div>
       <div className="w-full bg-gray-100 text-[#000] p-[1rem] rounded-xl flex justify-between"><p className=''>{com}</p></div>
 
+    </div>
     </div>
   )
 }
